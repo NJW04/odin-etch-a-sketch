@@ -32,15 +32,13 @@ body{
 
 .block-container{
     display: flex;
-    gap: 10px;
+    gap: 5px;
     width: 960px;
     flex-wrap: wrap;
     padding: 24px 0;
 }
 
 .square{
-    width: 50px;
-    height: 50px;
     background-color: pink;
 }
 

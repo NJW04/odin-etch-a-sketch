@@ -1,23 +1,35 @@
 const blockContainer = document.querySelector('.block-container');
 
-for (let i=0; i<256; i++){
-    const square = document.createElement('div');
-    square.classList.add('square');
-    square.addEventListener('mouseover', () => {
-        square.style.backgroundColor = 'black';
-    });
+function populatePage(numBlocks){
+    //FIRST empty out block container
+    while (blockContainer.firstChild) {
+        blockContainer.removeChild(blockContainer.lastChild);
+      }
+    
+    const totalBlocks = numBlocks*numBlocks;
+    for (let i=0; i<totalBlocks; i++){
+        const square = document.createElement('div');
+        square.classList.add('square');
+        //Also now calculate width and height for square
+        const widthHeight = (960 / numBlocks) - 5;
+        square.style.width = widthHeight + "px";
+        square.style.height = widthHeight + "px";
 
-    blockContainer.append(square);
+        square.addEventListener('mouseover', () => {
+            //Do RGB random values here later
+            square.style.backgroundColor = 'black';
+        });
+        
+        blockContainer.append(square);
+    }
 }
 
 const pageButton = document.querySelector('#main-button');
-pageButton.addEventListener("onclick", () => {
+pageButton.addEventListener("click", () => {
     let num = prompt("Please enter the number of blocks you would like the grid to be (in range 0-100)");
     populatePage(num);
 });
 
-//TODO when the button is clicked, according to numBlocks, populate page with it
-function populatePage(numBlocks){
-    alert("i have been summoned");
-
-}
+window.onload = (event) => {
+    populatePage(16);
+  };
