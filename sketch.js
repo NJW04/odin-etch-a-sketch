@@ -10,7 +10,7 @@ function populatePage(numBlocks){
     for (let i=0; i<totalBlocks; i++){
         const square = document.createElement('div');
         square.classList.add('square');
-        const widthHeight = (960 / numBlocks) - 5;
+        const widthHeight = (960 / numBlocks);
         square.style.width = widthHeight + "px";
         square.style.height = widthHeight + "px";
 
@@ -37,6 +37,36 @@ pageButton.addEventListener("click", () => {
 const clearButton = document.querySelector('#clear-button');
 clearButton.addEventListener('click', clearBoard);
 
+const blackButton = document.querySelector('#black-button');
+blackButton.addEventListener('click', () => {
+    const allSquares = document.querySelectorAll('.square');
+    const squareArray = Array.from(allSquares);
+    for (const curSquare of squareArray) {
+        curSquare.removeEventListener('mouseover', () => {
+            curSquare.style.backgroundColor = 'rgb(' + randomRGBNumber() + ',' + randomRGBNumber() + ',' + randomRGBNumber() + ')';
+        });
+
+        curSquare.addEventListener('mouseover', () => {
+            curSquare.style.backgroundColor = 'black';
+        });
+    }
+});
+
+const rgbButton = document.querySelector('#rgb-button');
+rgbButton.addEventListener('click', () => {
+    const allSquares = document.querySelectorAll('.square');
+    const squareArray = Array.from(allSquares);
+    for (const curSquare of squareArray) {
+        curSquare.removeEventListener('mouseover', () => {
+            curSquare.style.backgroundColor = 'black';
+        });
+        
+        curSquare.addEventListener('mouseover', () => {
+            curSquare.style.backgroundColor = 'rgb(' + randomRGBNumber() + ',' + randomRGBNumber() + ',' + randomRGBNumber() + ')';;
+        });
+    }
+});
+
 window.onload = (event) => {
     populatePage(16);
   };
@@ -49,6 +79,6 @@ window.onload = (event) => {
     const allSquares = document.querySelectorAll('.square');
     const squareArray = Array.from(allSquares);
     for (const curSquare of squareArray) {
-        curSquare.style.backgroundColor = 'black';
+        curSquare.style.backgroundColor = 'white';
     }
   }
